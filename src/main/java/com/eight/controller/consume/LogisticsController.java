@@ -33,19 +33,15 @@ public class LogisticsController {
 
     @GetMapping("getLogistics")
     private String getLog(String user_id, String order_id, Model model){
-        System.out.println(logisticsService.getLogistics(order_id, "1"));
         model.addAttribute("Logistics",logisticsService.getLogistics(order_id,"1"));
         return "comsume/ddd";
     }
 
     @GetMapping("propic")
     private String getPicByProId(Model model, String orderId){
-        System.out.println(orderId);
-        System.out.println(logisticsService.getOrder(orderId));
         if(logisticsService.getOrder(orderId)==null){
         model.addAttribute("remain","商品正在飞速打包中，请耐心等待");
     }else
-        System.out.println(logisticsService.getOrder(orderId).getLogistics());
         model.addAttribute("Information",logisticsService.getOrder(orderId));
         //生成取件码
         Random random=new Random();
@@ -58,7 +54,6 @@ public class LogisticsController {
     @GetMapping("order")
     private String getMyOrders(Model model, String userId){
     //登入后根据用户id判断用户是否已经买有东西,如果有则显示所有的订单消息,没有则提醒
-        System.out.println(userId);
         if(logisticsService.getOrdersList(userId).size()==0){
             model.addAttribute("remain","亲，您没有购买商品呢");
         }else
