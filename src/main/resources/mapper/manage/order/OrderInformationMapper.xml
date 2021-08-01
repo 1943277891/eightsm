@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eight.mapper.consume.logisticsMapper">
+
+    <select id="getOrder" resultMap="orderPic">
+        select m.create_time,m.shipping_time,m.address,m.order_id,m.shipping_user,m.user_id,m.payment_money,m.shoppingMall_name,
+            d.product_id,d.product_name,d.order_id,
+            p.product_id,p.pic_url,
+            u.user_id,u.user_name,u.mobile_phone,
+            l.message,l.current_time
+        from Product_pic_info p,Order_detail d,Order_master m,User_info u,Logistics l
+        where d.product_id=p.product_id and m.order_id=d.order_id and u.user_id=m.user_id and d.order_id=l.order_id and l.order_id=#{value}
+    </select>
+
+
+    <resultMap id="orderPic" type="com.eight.bean.OrderDetail">
+        <id property="orderId" column="order_id"></id>
+        <id property="productId" column="product_id"></id>
+        <result property="productName" column="product_name"></result>
+        <association property="productPicInfo" javaType="com.eight.bean.ProductPicInfo">
+            <id property="productId" column="product_id"></id>
+            <result property="picUrl" column="pic_url"></result>
+            <result property="productPicId" column="product_pic_id"></result>
+        </association>
+
+        <association property="orderMaster" javaType="com.eight.bean.OrderMaster">
+            <id property="orderId" column="order_id"></id>
+            <id property="userId" column="user_id"></id>
+            <result property="createTime" column="create_time"></result>
+            <result property="shippingTime" column="shipping_time"></result>
+            <result property="address" column="address"></result>
+            <result property="shippingUser" column="shipping_user"></result>
+            <result property="paymentMoney" column="payment_money"></result>
+            <result property="shoppingMailName" column="shoppingMall_name"></result>
+            <association property="userInfo" javaType="com.eight.bean.UserInfo">
+                <id property="userId" column="user_id"></id>
+                <result property="mobilePhone" column="mobile_phone"></result>
+                <result property="userName" column="user_name"></result>
+            </association>
+        </association>
+        <collection property="logistics" ofType="com.eight.bean.Logistics">
+            <id property="userId" column="user_id"></id>
+            <id property="orderId" column="order_id"></id>
+            <result property="message" column="message"></result>
+            <result property="currentTime" column="current_time"></result>
+        </collection>
+    </resultMap>
+
+
+
+</mapper>

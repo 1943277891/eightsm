@@ -13,7 +13,7 @@ public class UserInfo {
     // 用户ID
     private Long userId;
     // 昵称
-    private String username;
+    private String userName;
     // 真实姓名
     private String realName;
     // 1 身份证，2 军官证，3 护照
@@ -54,13 +54,13 @@ public class UserInfo {
     // 有参构造器，进行属性值的初始化
 
 
-    public UserInfo(Long userInfoId, Long userId, String username, String realName,
+    public UserInfo(Long userInfoId, Long userId, String userName, String realName,
                     Integer identityCardType, String identityCardNo, String userSex,
                     BigInteger mobilePhone, String email, Timestamp registerTime, Timestamp birthday,
                     BigDecimal userMoney, Timestamp modifiedTime, Integer userLevel, Integer levelPoint) {
         this.userInfoId = userInfoId;
         this.userId = userId;
-        this.username = username;
+        this.userName = userName;
         this.realName = realName;
         this.identityCardType = identityCardType;
         this.identityCardNo = identityCardNo;
@@ -97,12 +97,12 @@ public class UserInfo {
 
     // 获取 昵称 的属性值
     public String getUsername() {
-        return username;
+        return userName;
     }
 
     // 设置 昵称 的属性值
     public void setUsername(String username) {
-        this.username = username;
+        this.userName = username;
     }
 
     // 获取 真实姓名 的属性值
@@ -270,7 +270,7 @@ public class UserInfo {
         return "UserInfo{" +
                 "userInfoId=" + userInfoId +
                 ", userId=" + userId +
-                ", userName='" + username + '\'' +
+                ", userName='" + userName + '\'' +
                 ", realName='" + realName + '\'' +
                 ", identityCardType=" + identityCardType +
                 ", identityCardNo='" + identityCardNo + '\'' +

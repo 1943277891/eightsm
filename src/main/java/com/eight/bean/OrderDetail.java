@@ -2,6 +2,7 @@ package com.eight.bean;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class OrderDetail {
     // 订单详情表ID
@@ -20,6 +21,57 @@ public class OrderDetail {
     private BigDecimal freeMoney;
     // 最后修改时间
     private Timestamp modifiedTime;
+
+    //在这里添加商品图片详情信息表
+    private ProductPicInfo productPicInfo;
+    //根据订单id找到Order_master表中一些需要的数据
+    private OrderMaster orderMaster;
+    //获取该商品的描述
+    private ProductInfo productInfo;
+    //根据用户的id查看该用户的订单
+    private UserInfo userInfo;
+    //查看消息
+    private List<Logistics> logistics;
+
+    public ProductPicInfo getProductPicInfo() {
+        return productPicInfo;
+    }
+
+    public void setProductPicInfo(ProductPicInfo productPicInfo) {
+        this.productPicInfo = productPicInfo;
+    }
+
+    public OrderMaster getOrderMaster() {
+        return orderMaster;
+    }
+
+    public void setOrderMaster(OrderMaster orderMaster) {
+        this.orderMaster = orderMaster;
+    }
+
+    public ProductInfo getProductInfo() {
+        return productInfo;
+    }
+
+    public void setProductInfo(ProductInfo productInfo) {
+        this.productInfo = productInfo;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
+
+    public List<Logistics> getLogistics() {
+        return logistics;
+    }
+
+    public void setLogistics(List<Logistics> logistics) {
+        this.logistics = logistics;
+    }
 
     // 无参构造器
     public OrderDetail() {

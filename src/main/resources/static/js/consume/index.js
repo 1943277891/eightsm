@@ -582,6 +582,12 @@ $(function () {
                         </a>`;
             }
             headPortrait.css("display", "block").attr("value", userId).append(str);
+
+
+            $(".user-order").on("click",function () {
+
+            })
+
         })
 
         //登陆和注册变成用户信息
@@ -593,7 +599,7 @@ $(function () {
         $("#user-operator2").attr({
             "class": "user-order",
             "value":userId,
-            "href": "http://localhost:8080/eight/user/index/order"
+            "href": "http://localhost:8080/eight/user/index/order?userId=" + userId
         }).text("我的订单");
         $("#user-operator3").attr({
             "class": "user-exits",

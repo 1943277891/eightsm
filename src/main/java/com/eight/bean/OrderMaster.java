@@ -50,6 +50,27 @@ public class OrderMaster {
 
     private ProductInfo productInfo;
 
+    //每一个订单对应一个订单详情表
+    private OrderDetail orderDetail;
+    //根据用户id 找到用户的手机号
+    private UserInfo userInfo;
+
+    public OrderDetail getOrderDetail() {
+        return orderDetail;
+    }
+
+    public void setOrderDetail(OrderDetail orderDetail) {
+        this.orderDetail = orderDetail;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
+
     // 无参构造器
     public OrderMaster() {
     }

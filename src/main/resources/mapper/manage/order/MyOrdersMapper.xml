@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eight.mapper.consume.logisticsMapper">
+
+    <select id="getOrdersList" resultMap="OrdersList">
+   select DISTINCT
+           u.user_id,m.order_id,m.user_id,
+           d.product_id did,d.product_name dname,d.order_id,
+           p.product_id pid,p.pic_url purl,p.product_pic_id ppid,
+           pi.product_id,pi.price,pi.descript,pi.price
+        from Order_detail d,Product_info pi,Product_pic_info p,order_master m,user_info u
+        where d.product_id=p.product_id and p.product_id=pi.product_id
+        and m.order_id=d.order_id and m.user_id=u.user_id and u.user_id=#{value}
+    </select>
+
+    <resultMap id="OrdersList" type="com.eight.bean.OrderDetail">
+        <id property="orderId" column="order_id"></id>
+        <id property="productId" column="did"></id>
+        <result property="productName" column="dname"></result>
+        <association property="productPicInfo" javaType="com.eight.bean.ProductPicInfo">
+            <id property="productId" column="pid"></id>
+            <result property="picUrl" column="purl"></result>
+            <result property="productPicId" column="ppid"></result>
+        </association>
+
+        <association property="productInfo" javaType="com.eight.bean.ProductInfo">
+            <id property="productId" column="product_id"></id>
+            <result property="descript" column="descript"></result>
+            <result property="price" column="price"></result>
+        </association>
+
+        <association property="orderMaster" javaType="com.eight.bean.OrderMaster">
+            <id property="userId" column="user_id"></id>
+            <id property="orderId" column="order_id"></id>
+            <association property="userInfo" javaType="com.eight.bean.UserInfo">
+                <id property="userId" column="user_id"></id>
+            </association>
+        </association>
+    </resultMap>
+
+</mapper>
