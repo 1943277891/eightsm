@@ -53,7 +53,7 @@ public class LogisticsController {
 
     @GetMapping("order")
     private String getMyOrders(Model model, String userId){
-    //登入后根据用户id判断用户是否已经买有东西,如果有则显示所有的订单消息,没有则提醒
+    //登入后根据用户id判断用户是否已经买有东西,如果有则显示所有的订单消息,没有则提醒用户
         if(logisticsService.getOrdersList(userId).size()==0){
             model.addAttribute("remain","亲，您没有购买商品呢");
         }else
